@@ -7,7 +7,7 @@ import path from "node:path";
 import fs from "node:fs";
 import { pipeline } from "node:stream";
 import { promisify } from "node:util";
-import { v4 as uuidv4 } from "uuid";
+import { randomUUID } from "node:crypto";
 
 const pump = promisify(pipeline);
 
@@ -53,19 +53,7 @@ if (!fs.existsSync(certificatesDir)) {
 
 const buildServer = async (): Promise<FastifyInstance> => {
   const fastify = Fastify({
-    logger:
-      process.env.NODE_ENV === "development"
-        ? {
-            level: "info",
-            transport: {
-              target: "pino-pretty",
-              options: {
-                translateTime: "HH:MM:ss Z",
-                ignore: "pid,hostname",
-              },
-            },
-          }
-        : true,
+    logger: true,
   });
 
   // Registrar plugin de multipart para upload de arquivos
@@ -266,7 +254,7 @@ const buildServer = async (): Promise<FastifyInstance> => {
 
         // Gerar nome único para o arquivo
         const fileExtension = path.extname(data.filename);
-        const uniqueFilename = `${uuidv4()}${fileExtension}`;
+        const uniqueFilename = `${randomUUID()}${fileExtension}`;
         const filePath = path.join(uploadsDir, uniqueFilename);
 
         // Salvar arquivo
@@ -532,7 +520,7 @@ const buildServer = async (): Promise<FastifyInstance> => {
         }
 
         // Gerar nome único para o certificado
-        const uniqueFilename = `cert_${uuidv4()}${fileExtension}`;
+        const uniqueFilename = `cert_${randomUUID()}${fileExtension}`;
         const filePath = path.join(certificatesDir, uniqueFilename);
 
         // Salvar certificado
