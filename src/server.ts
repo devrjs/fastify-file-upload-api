@@ -40,8 +40,8 @@ interface ErrorResponse {
 }
 
 // Criar pastas se não existirem
-const uploadsDir = path.join(__dirname, "../uploads");
-const certificatesDir = path.join(__dirname, "../certificates");
+const uploadsDir = path.join(__dirname, "../uploads/images");
+const certificatesDir = path.join(__dirname, "../uploads/certificates");
 
 if (!fs.existsSync(uploadsDir)) {
   fs.mkdirSync(uploadsDir, { recursive: true });

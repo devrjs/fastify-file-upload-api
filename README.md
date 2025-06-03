@@ -1,4 +1,4 @@
-# API de Upload de Imagens
+# API de Upload de Arquivos
 
 Uma API robusta construída com Node.js, TypeScript, Fastify e Swagger para upload e gerenciamento de imagens.
 
@@ -22,8 +22,8 @@ Uma API robusta construída com Node.js, TypeScript, Fastify e Swagger para uplo
 1. **Clone ou crie o projeto:**
 
 ```bash
-mkdir fastify-image-upload-api
-cd fastify-image-upload-api
+mkdir fastify-file-upload-api
+cd fastify-file-upload-api
 ```
 
 2. **Instale as dependências:**
